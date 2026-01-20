@@ -1,70 +1,64 @@
 <!DOCTYPE html>
 <html lang="ar">
-
 <head>
-    <meta charset="UTF-8">
-    <title>EduBreak</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>EduBreak</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <h1>🏆 EduBreak</h1>
-    <p class="subtitle">منصة مسابقات تفاعلية للحصص الاحتياط</p>
+<h1>🏆 EduBreak</h1>
+<p class="subtitle">منصة مسابقات تفاعلية للحصص الاحتياط</p>
 
-    <!-- قسم اقتباس / حكم -->
-    <div class="quote">
-        "التعلم رحلة، استمتع بكل خطوة!" 🌟
-    </div>
+<!-- اقتباس -->
+<div class="quote" id="quote">"التعلم رحلة، استمتع بكل خطوة!" 🌟</div>
 
-    <!-- الصفحة الرئيسية -->
-    <div id="home" class="grid">
-        <div class="card" onclick="startQuiz('religious')"><img src="mosque.svg"><span>ديني</span></div>
-        <div class="card" onclick="startQuiz('culture')"><img src="book.svg"><span>ثقافي</span></div>
-        <div class="card" onclick="startQuiz('education')"><img src="brain.svg"><span>تعليمي</span></div>
-        <div class="card" onclick="startQuiz('fun')"><img src="game.svg"><span>ترفيهي</span></div>
-        <div class="card" onclick="startQuiz('skills')"><img src="handshake.svg"><span>مهاري</span></div>
-        <div class="card teacher" onclick="showTeacher()"><img src="teacher.svg"><span>للمعلمة</span></div>
-    </div>
+<!-- الصفحة الرئيسية -->
+<div id="home" class="grid">
+  <div class="card" onclick="startQuiz('religious')"><img src="mosque.svg"><span>ديني</span></div>
+  <div class="card" onclick="startQuiz('culture')"><img src="book.svg"><span>ثقافي</span></div>
+  <div class="card" onclick="startQuiz('education')"><img src="brain.svg"><span>تعليمي</span></div>
+  <div class="card" onclick="startQuiz('fun')"><img src="game.svg"><span>ترفيهي</span></div>
+  <div class="card" onclick="startQuiz('skills')"><img src="handshake.svg"><span>مهاري</span></div>
+  <div class="card teacher" onclick="showTeacher()"><img src="teacher.svg"><span>للمعلمة</span></div>
+</div>
 
-    <!-- صفحة الاختبار -->
-    <div id="quiz" class="hidden">
-        <div id="progressBarContainer">
-            <div id="progressBar"></div>
-        </div>
-        <div class="top-bar">
-            ⏱ الوقت: <b id="time">15</b> ثانية
-        </div>
-        <h2 id="question"></h2>
-        <div id="options"></div>
-    </div>
+<!-- صفحة الاختبار -->
+<div id="quiz" class="hidden">
+  <div id="progressBarContainer">
+    <div id="progressBar"></div>
+  </div>
+  <div class="top-bar">
+    ⏱ الوقت: <b id="time">15</b> ثانية
+  </div>
+  <h2 id="question"></h2>
+  <div id="options"></div>
+</div>
 
-    <!-- صفحة النتيجة النهائية -->
-    <div id="resultPage" class="hidden">
-        <h2 id="finalText"></h2>
-        <p id="scoreText"></p>
-        <button onclick="location.reload()">🔁 إعادة المحاولة</button>
-    </div>
+<!-- صفحة النتيجة -->
+<div id="resultPage" class="hidden">
+  <h2 id="finalText"></h2>
+  <p id="scoreText"></p>
+  <button onclick="location.reload()">🔁 إعادة المحاولة</button>
+</div>
 
-    <!-- قسم المعلمة -->
-    <div id="teacher" class="hidden">
-        <h2>👩‍🏫 اقتراح ذكي للمعلمة</h2>
-        <label>مدة الحصة:</label>
-        <select id="lessonTime">
-            <option value="10">10 دقائق</option>
-            <option value="20">20 دقيقة</option>
-            <option value="30">30 دقيقة</option>
-        </select>
-        <button onclick="suggest()">اقترح نشاط</button>
-        <p id="result"></p>
-        <button onclick="location.reload()">⬅️ رجوع</button>
-    </div>
+<!-- قسم المعلمة -->
+<div id="teacher" class="hidden">
+  <h2>👩‍🏫 اقتراح ذكي للمعلمة</h2>
+  <label>مدة الحصة:</label>
+  <select id="lessonTime">
+    <option value="10">10 دقائق</option>
+    <option value="20">20 دقيقة</option>
+    <option value="30">30 دقيقة</option>
+  </select>
+  <button onclick="suggest()">اقترح نشاط</button>
+  <p id="result"></p>
+  <button onclick="location.reload()">⬅️ رجوع</button>
+</div>
 
-    <audio id="winSound" src="win.mp3" preload="auto"></audio>
-
-    <!-- مكتبة Confetti -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="script.js"></script>
+<audio id="winSound" src="win.mp3" preload="auto"></audio>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="script.js"></script>
 </body>
-
 </html>
