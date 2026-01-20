@@ -1,5 +1,6 @@
 let current = 0;
 let quizData = [];
+let correctCount = 0;
 let allCorrect = true;
 let timeLeft = 15;
 let timer;
@@ -47,6 +48,7 @@ const quizzes = {
 function startQuiz(type) {
     quizData = quizzes[type];
     current = 0;
+    correctCount = 0;
     allCorrect = true;
     document.getElementById("home").classList.add("hidden");
     document.getElementById("quiz").classList.remove("hidden");
@@ -59,17 +61,31 @@ function nextQuestion() {
         return;
     }
 
+    timeLeft = 15;
+    document.getElementById("time").innerText = timeLeft;
+    clearInterval(timer);
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("time").innerText = timeLeft;
+        if (timeLeft <= 0) {
+            allCorrect = false;
+            current++;
+            nextQuestion();
+        }
+    }, 1000);
+
     const q = quizData[current];
     document.getElementById("question").innerText = q.q;
     const optionsDiv = document.getElementById("options");
     optionsDiv.innerHTML = "";
 
-    q.o.forEach((option, index) => {
+    q.o.forEach((opt, i) => {
         const btn = document.createElement("div");
         btn.className = "option";
-        btn.innerText = option;
+        btn.innerText = opt;
         btn.onclick = () => {
-            if (index !== q.a) allCorrect = false;
+            if (i === q.a) correctCount++;
+            else allCorrect = false;
             current++;
             nextQuestion();
         };
@@ -78,9 +94,13 @@ function nextQuestion() {
 }
 
 function showResult() {
+    clearInterval(timer);
     document.getElementById("quiz").classList.add("hidden");
     document.getElementById("resultPage").classList.remove("hidden");
     const text = document.getElementById("finalText");
+    const scoreText = document.getElementById("scoreText");
+
+    scoreText.innerText = `✅ ${correctCount} من ${quizData.length}`;
 
     if (allCorrect) {
         text.innerText = "🎉 ممتاز! جميع الإجابات صحيحة";
