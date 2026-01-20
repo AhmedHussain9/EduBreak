@@ -14,12 +14,12 @@
 
     <!-- الصفحة الرئيسية -->
     <div id="home" class="grid">
-        <div class="card" onclick="startQuiz('religious')"><img src="icons/mosque.png"><span>ديني</span></div>
-        <div class="card" onclick="startQuiz('culture')"><img src="icons/book.png"><span>ثقافي</span></div>
-        <div class="card" onclick="startQuiz('education')"><img src="icons/brain.png"><span>تعليمي</span></div>
-        <div class="card" onclick="startQuiz('fun')"><img src="icons/game.png"><span>ترفيهي</span></div>
-        <div class="card" onclick="startQuiz('skills')"><img src="icons/handshake.png"><span>مهاري</span></div>
-        <div class="card teacher" onclick="showTeacher()"><img src="icons/teacher.png"><span>للمعلمة</span></div>
+        <div class="card" onclick="startQuiz('religious')"><img src="mosque.svg"><span>ديني</span></div>
+        <div class="card" onclick="startQuiz('culture')"><img src="book.svg"><span>ثقافي</span></div>
+        <div class="card" onclick="startQuiz('education')"><img src="brain.svg"><span>تعليمي</span></div>
+        <div class="card" onclick="startQuiz('fun')"><img src="game.svg"><span>ترفيهي</span></div>
+        <div class="card" onclick="startQuiz('skills')"><img src="handshake.svg"><span>مهاري</span></div>
+        <div class="card teacher" onclick="showTeacher()"><img src="teacher.svg"><span>للمعلمة</span></div>
     </div>
 
     <!-- صفحة الاختبار -->
@@ -58,6 +58,8 @@
 
     <audio id="winSound" src="win.mp3" preload="auto"></audio>
 
+    <!-- مكتبة Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
 </body>
 
