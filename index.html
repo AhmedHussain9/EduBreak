@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EduBreak - استثمار الحصة الاحتياط</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>EduBreak</h1>
+        <p>استثمار الحصة الاحتياط بشكل ذكي</p>
+    </header>
+
+    <nav>
+        <button onclick="showSection('religion')">ديني</button>
+        <button onclick="showSection('culture')">ثقافي</button>
+        <button onclick="showSection('education')">تعليمي</button>
+        <button onclick="showSection('fun')">ترفيهي</button>
+        <button onclick="showSection('skills')">مهاري</button>
+        <button onclick="showSection('teacher')">قسم المعلمة</button>
+    </nav>
+
+    <main>
+
+        <!-- القسم الديني -->
+        <section id="religion" class="content">
+            <h2>القسم الديني</h2>
+            <div id="religion-question"></div>
+            <div id="religion-options"></div>
+            <p id="religion-feedback"></p>
+        </section>
+
+        <!-- القسم الثقافي -->
+        <section id="culture" class="content">
+            <h2>القسم الثقافي</h2>
+            <div id="culture-question"></div>
+            <div id="culture-options"></div>
+            <p id="culture-feedback"></p>
+        </section>
+
+        <!-- القسم التعليمي -->
+        <section id="education" class="content">
+            <h2>القسم التعليمي</h2>
+            <div id="education-question"></div>
+            <div id="education-options"></div>
+            <p id="education-feedback"></p>
+        </section>
+
+        <!-- القسم الترفيهي -->
+        <section id="fun" class="content">
+            <h2>القسم الترفيهي</h2>
+            <div id="fun-question"></div>
+            <div id="fun-options"></div>
+            <p id="fun-feedback"></p>
+        </section>
+
+        <!-- القسم المهاري -->
+        <section id="skills" class="content">
+            <h2>القسم المهاري</h2>
+            <div id="skills-question"></div>
+            <div id="skills-options"></div>
+            <p id="skills-feedback"></p>
+        </section>
+
+        <!-- قسم المعلمة -->
+        <section id="teacher" class="content">
+            <h2>قسم المعلمة</h2>
+            <label>اختر مدة الحصة (دقائق): </label>
+            <select id="lesson-duration">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+            </select>
+            <button onclick="suggestActivity()">اقترح نشاط</button>
+            <p id="teacher-suggestion"></p>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
