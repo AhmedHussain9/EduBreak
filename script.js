@@ -105,6 +105,7 @@ function showResult() {
     if (allCorrect) {
         text.innerText = "🎉 ممتاز! جميع الإجابات صحيحة";
         winSound.play();
+        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
     } else {
         text.innerText = "📘 تم الحل، راجع الإجابات وجرّب مرة أخرى";
     }
