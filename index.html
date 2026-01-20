@@ -14,18 +14,17 @@
 
     <!-- الصفحة الرئيسية -->
     <div id="home" class="grid">
-        <div class="card" onclick="initSound(); startQuiz('religious')">🕌<span>ديني</span></div>
-        <div class="card" onclick="initSound(); startQuiz('culture')">📚<span>ثقافي</span></div>
-        <div class="card" onclick="initSound(); startQuiz('education')">🧠<span>تعليمي</span></div>
-        <div class="card" onclick="initSound(); startQuiz('fun')">🎮<span>ترفيهي</span></div>
-        <div class="card" onclick="initSound(); startQuiz('skills')">🤝<span>مهاري</span></div>
+        <div class="card" onclick="startQuiz('religious')">🕌<span>ديني</span></div>
+        <div class="card" onclick="startQuiz('culture')">📚<span>ثقافي</span></div>
+        <div class="card" onclick="startQuiz('education')">🧠<span>تعليمي</span></div>
+        <div class="card" onclick="startQuiz('fun')">🎮<span>ترفيهي</span></div>
+        <div class="card" onclick="startQuiz('skills')">🤝<span>مهاري</span></div>
         <div class="card teacher" onclick="showTeacher()">👩‍🏫<span>للمعلمة</span></div>
     </div>
 
-    <!-- المسابقة -->
+    <!-- صفحة الاختبار -->
     <div id="quiz" class="hidden">
         <div class="top-bar">
-            <span>⭐ النقاط: <b id="score">0</b></span>
             <span>⏱ الوقت: <b id="time">15</b></span>
         </div>
 
@@ -33,10 +32,17 @@
         <div id="options"></div>
     </div>
 
-    <!-- المعلمة -->
+    <!-- صفحة النتيجة النهائية -->
+    <div id="resultPage" class="hidden">
+        <h2 id="finalText"></h2>
+        <button onclick="location.reload()">🔁 إعادة المحاولة</button>
+    </div>
+
+    <!-- قسم المعلمة -->
     <div id="teacher" class="hidden">
         <h2>👩‍🏫 اقتراح ذكي للمعلمة</h2>
 
+        <label>مدة الحصة:</label>
         <select id="lessonTime">
             <option value="10">10 دقائق</option>
             <option value="20">20 دقيقة</option>
