@@ -1,98 +1,94 @@
-let currentQuiz = [];
-let index = 0;
-
-const quizzes = {
-  religion: [
-    {
-      q: "ما السورة التي لا تبدأ بالبسملة؟",
-      a: ["الأنفال", "التوبة", "النساء", "الفتح"],
-      c: 1
-    },
-    {
-      q: "كم عدد مصارف الزكاة؟",
-      a: ["6", "7", "8", "9"],
-      c: 2
-    }
-  ],
-  culture: [
-    {
-      q: "من هو مؤسس علم الاجتماع؟",
-      a: ["أفلاطون", "ابن خلدون", "أرسطو", "ديكارت"],
-      c: 1
-    },
-    {
-      q: "ما عاصمة كندا؟",
-      a: ["تورنتو", "مونتريال", "أوتاوا", "فانكوفر"],
-      c: 2
-    }
-  ],
-  general: [
-    {
-      q: "ما العنصر الذي يرمز له O؟",
-      a: ["ذهب", "أكسجين", "فضة", "هيدروجين"],
-      c: 1
-    }
-  ]
+const data = {
+    religious: [
+        { q: "ما السورة التي خُتمت باسم نبيين؟", o: ["الصافات", "الأنعام", "الرحمن"], a: 0 },
+        { q: "كم عدد آيات سورة البقرة؟", o: ["286", "300", "255"], a: 0 },
+        { q: "من هو النبي الذي أُرسل إلى قوم مدين؟", o: ["شعيب", "هود", "صالح"], a: 0 },
+        { q: "ما أول فريضة فرضت؟", o: ["الصلاة", "الصوم", "الزكاة"], a: 0 },
+        { q: "كم عدد أسماء الله الحسنى؟", o: ["99", "100", "88"], a: 0 }
+    ],
+    culture: [
+        { q: "متى تأسست المملكة العربية السعودية؟", o: ["1932", "1920", "1945"], a: 0 },
+        { q: "أكبر صحراء رملية في العالم؟", o: ["الربع الخالي", "جوبي", "كالاهاري"], a: 0 },
+        { q: "من مؤلف كتاب المقدمة؟", o: ["ابن خلدون", "الجاحظ", "الفارابي"], a: 0 },
+        { q: "أكثر لغة تحدثًا في العالم؟", o: ["الإنجليزية", "الصينية", "الإسبانية"], a: 1 },
+        { q: "عاصمة كندا؟", o: ["تورنتو", "فانكوفر", "أوتاوا"], a: 2 }
+    ],
+    education: [
+        { q: "ما ناتج 9²؟", o: ["81", "72", "99"], a: 0 },
+        { q: "إذا كان x=3، فما قيمة 2x+5؟", o: ["11", "10", "9"], a: 0 },
+        { q: "ما العدد الأولي؟", o: ["9", "7", "15"], a: 1 },
+        { q: "محيط الدائرة يعتمد على؟", o: ["القطر", "نصف القطر", "π"], a: 2 },
+        { q: "ما أصغر عدد طبيعي؟", o: ["0", "1", "-1"], a: 0 }
+    ],
+    fun: [
+        { q: "كم ثانية في الدقيقة؟", o: ["60", "100", "90"], a: 0 },
+        { q: "لون السماء؟", o: ["أزرق", "أخضر", "أحمر"], a: 0 },
+        { q: "كم يوم في الأسبوع؟", o: ["7", "5", "6"], a: 0 },
+        { q: "كم لاعب في فريق كرة القدم؟", o: ["11", "10", "9"], a: 0 },
+        { q: "أسرع حيوان بري؟", o: ["الفهد", "الأسد", "الحصان"], a: 0 }
+    ],
+    skills: [
+        { q: "أفضل مهارة لحل المشكلات؟", o: ["التفكير النقدي", "الحفظ", "التكرار"], a: 0 },
+        { q: "العمل الجماعي يعني؟", o: ["التعاون", "التنافس", "العزلة"], a: 0 },
+        { q: "مهارة التواصل تشمل؟", o: ["الاستماع", "التجاهل", "الصمت"], a: 0 },
+        { q: "إدارة الوقت تعني؟", o: ["تنظيم", "تأجيل", "إهمال"], a: 0 },
+        { q: "القيادة تعتمد على؟", o: ["التأثير", "الأوامر", "الصوت العالي"], a: 0 }
+    ]
 };
 
-function openQuiz(type) {
-  currentQuiz = quizzes[type];
-  index = 0;
-  showSection("quiz");
-  loadQuestion();
+let section, index = 0;
+
+function startQuiz(type) {
+    section = data[type];
+    index = 0;
+    document.getElementById("home").classList.add("hidden");
+    document.getElementById("quiz").classList.remove("hidden");
+    showQuestion();
 }
 
-function loadQuestion() {
-  const q = currentQuiz[index];
-  document.getElementById("question").innerText = q.q;
-  const answers = document.getElementById("answers");
-  answers.innerHTML = "";
+function showQuestion() {
+    if (index >= section.length) {
+        alert("🎉 انتهت المسابقة!");
+        location.reload();
+        return;
+    }
 
-  q.a.forEach((text, i) => {
-    const btn = document.createElement("button");
-    btn.innerText = text;
-    btn.onclick = () => checkAnswer(i, btn);
-    answers.appendChild(btn);
-  });
+    const q = section[index];
+    document.getElementById("question").innerText = q.q;
+    const optionsDiv = document.getElementById("options");
+    optionsDiv.innerHTML = "";
+
+    q.o.forEach((opt, i) => {
+        const btn = document.createElement("div");
+        btn.className = "option";
+        btn.innerText = opt;
+        btn.onclick = () => checkAnswer(i);
+        optionsDiv.appendChild(btn);
+    });
 }
 
-function checkAnswer(i, btn) {
-  const soundWin = document.getElementById("winSound");
-  const soundLose = document.getElementById("loseSound");
-
-  if (i === currentQuiz[index].c) {
-    btn.classList.add("correct");
-    soundWin.play();
-  } else {
-    btn.classList.add("wrong");
-    soundLose.play();
-  }
+function checkAnswer(i) {
+    if (i === section[index].a) {
+        document.getElementById("winSound").play();
+        index++;
+        setTimeout(showQuestion, 500);
+    } else {
+        alert("❌ حاول مرة أخرى");
+    }
 }
 
-function nextQuestion() {
-  index++;
-  if (index < currentQuiz.length) {
-    loadQuestion();
-  } else {
-    alert("🎉 انتهت الأسئلة!");
-    goHome();
-  }
+function showTeacher() {
+    document.getElementById("home").classList.add("hidden");
+    document.getElementById("teacher").classList.remove("hidden");
 }
 
-function openSuggestions() {
-  showSection("suggestions");
-}
+function suggestActivity() {
+    const t = document.getElementById("time").value;
+    let text = "";
 
-function submitSuggestion() {
-  alert("✅ تم إرسال الاقتراح (محليًا)");
-  document.getElementById("suggestText").value = "";
-}
+    if (t == 10) text = "مسابقة سريعة أو سؤال تفكير.";
+    if (t == 20) text = "لعبة جماعية أو تحدي ثقافي.";
+    if (t == 30) text = "نشاط مهاري مع نقاش.";
 
-function goHome() {
-  showSection("home");
-}
-
-function showSection(id) {
-  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+    document.getElementById("suggestion").innerText = text;
 }
