@@ -3,84 +3,63 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>EduBreak - استثمار الحصة الاحتياط</title>
+    <title>EduBreak | موقع المسابقات</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 
 <body>
 
     <header>
-        <h1>EduBreak</h1>
-        <p>استثمار الحصة الاحتياط بشكل ذكي</p>
+        <h1>🎯 EduBreak</h1>
+        <p>حوّل الحصة الاحتياط إلى تحدي ذكي</p>
     </header>
 
-    <nav>
-        <button onclick="showSection('religion')">ديني</button>
-        <button onclick="showSection('culture')">ثقافي</button>
-        <button onclick="showSection('education')">تعليمي</button>
-        <button onclick="showSection('fun')">ترفيهي</button>
-        <button onclick="showSection('skills')">مهاري</button>
-        <button onclick="showSection('teacher')">قسم المعلمة</button>
-    </nav>
+    <!-- الصفحة الرئيسية -->
+    <section id="home" class="page active">
+        <div class="categories">
 
-    <main>
+            <div class="card" onclick="startSection('religion')">
+                <div class="icon">🕌</div>
+                <span>ديني</span>
+            </div>
 
-        <!-- القسم الديني -->
-        <section id="religion" class="content">
-            <h2>القسم الديني</h2>
-            <div id="religion-question"></div>
-            <div id="religion-options"></div>
-            <p id="religion-feedback"></p>
-        </section>
+            <div class="card" onclick="startSection('culture')">
+                <div class="icon">📚</div>
+                <span>ثقافي</span>
+            </div>
 
-        <!-- القسم الثقافي -->
-        <section id="culture" class="content">
-            <h2>القسم الثقافي</h2>
-            <div id="culture-question"></div>
-            <div id="culture-options"></div>
-            <p id="culture-feedback"></p>
-        </section>
+            <div class="card" onclick="startSection('education')">
+                <div class="icon">🧠</div>
+                <span>تعليمي</span>
+            </div>
 
-        <!-- القسم التعليمي -->
-        <section id="education" class="content">
-            <h2>القسم التعليمي</h2>
-            <div id="education-question"></div>
-            <div id="education-options"></div>
-            <p id="education-feedback"></p>
-        </section>
+            <div class="card" onclick="startSection('fun')">
+                <div class="icon">🎮</div>
+                <span>ترفيهي</span>
+            </div>
 
-        <!-- القسم الترفيهي -->
-        <section id="fun" class="content">
-            <h2>القسم الترفيهي</h2>
-            <div id="fun-question"></div>
-            <div id="fun-options"></div>
-            <p id="fun-feedback"></p>
-        </section>
+            <div class="card" onclick="startSection('skills')">
+                <div class="icon">🚀</div>
+                <span>مهاري</span>
+            </div>
 
-        <!-- القسم المهاري -->
-        <section id="skills" class="content">
-            <h2>القسم المهاري</h2>
-            <div id="skills-question"></div>
-            <div id="skills-options"></div>
-            <p id="skills-feedback"></p>
-        </section>
+        </div>
+    </section>
 
-        <!-- قسم المعلمة -->
-        <section id="teacher" class="content">
-            <h2>قسم المعلمة</h2>
-            <label>اختر مدة الحصة (دقائق): </label>
-            <select id="lesson-duration">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-            </select>
-            <button onclick="suggestActivity()">اقترح نشاط</button>
-            <p id="teacher-suggestion"></p>
-        </section>
+    <!-- صفحة المسابقة -->
+    <section id="quiz" class="page">
+        <div class="quiz-box">
+            <h2 id="question"></h2>
+            <div id="options"></div>
 
-    </main>
+            <div class="nav">
+                <button onclick="goHome()">⬅ الرجوع</button>
+                <span id="progress"></span>
+            </div>
+        </div>
+    </section>
 
-    <script src="script.js"></script>
 </body>
 
 </html>
