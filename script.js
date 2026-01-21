@@ -17,18 +17,37 @@ const quizzes = {
         { q: "اللغة الرسمية؟", o: ["إنجليزية", "فرنسية", "عربية", "تركية"], a: 2 },
         { q: "اليوم الوطني؟", o: ["23 سبتمبر", "1 يناير", "5 مايو", "10 يونيو"], a: 0 },
         { q: "أكبر قارة؟", o: ["أفريقيا", "آسيا", "أوروبا", "أمريكا"], a: 1 },
-        { q: "البحر الأحمر يقع؟", o: ["شرق", "غرب", "شمال", "جنوب"], a: 1 }
+        { q: "البحر الأحمر يقع؟", o: ["شرق", "غرب", "شمال", "جنوب"], a: 0 }
+    ],
+    education: [
+        { q: "2+2=", o: ["3", "4", "5", "6"], a: 1 },
+        { q: "10-3=", o: ["6", "7", "8", "9"], a: 1 },
+        { q: "5*2=", o: ["8", "9", "10", "12"], a: 2 },
+        { q: "12/4=", o: ["2", "3", "4", "5"], a: 1 },
+        { q: "ما الرقم الأولي بعد 5؟", o: ["6", "7", "8", "9"], a: 1 }
+    ],
+    fun: [
+        { q: "ما لون السماء يوم مشمس؟", o: ["أحمر", "أزرق", "أصفر", "أخضر"], a: 1 },
+        { q: "ما الحيوان الأسرع؟", o: ["حصان", "نمر", "شيتا", "أرنب"], a: 2 },
+        { q: "كم قدم للعنكبوت؟", o: ["6", "8", "10", "12"], a: 1 },
+        { q: "الرمز الكيميائي للماء؟", o: ["H2", "H2O", "O2", "CO2"], a: 1 },
+        { q: "كم أيام الأسبوع؟", o: ["5", "6", "7", "8"], a: 2 }
+    ],
+    skills: [
+        { q: "ما مهارة التواصل؟", o: ["الاستماع", "الكتابة", "القراءة", "التحدث"], a: 0 },
+        { q: "أفضل طريقة لإدارة الوقت؟", o: ["التسويف", "التخطيط", "التجاهل", "اللعب"], a: 1 },
+        { q: "العمل الجماعي يعني؟", o: ["الوحدة", "التعاون", "المشاركة", "التفرّد"], a: 2 },
+        { q: "حل المشكلات يحتاج؟", o: ["الإبداع", "التكرار", "التقليد", "التسليم"], a: 0 },
+        { q: "أهم مهارة؟", o: ["التعلم المستمر", "الكسل", "التأجيل", "النوم"], a: 0 }
     ]
 };
 
 function startQuiz(type) {
     document.getElementById("home").classList.add("hidden");
     document.getElementById("quiz").classList.remove("hidden");
-
     currentQuiz = quizzes[type];
     currentIndex = 0;
     score = 0;
-
     showQuestion();
 }
 
@@ -64,16 +83,14 @@ function showQuestion() {
 function selectAnswer(i) {
     clearInterval(timer);
     const feedback = document.getElementById("feedback");
-
     if (i === currentQuiz[currentIndex].a) {
         score++;
-        feedback.textContent = "😀 إجابة صحيحة! أحسنت";
+        feedback.textContent = "😀 أحسنت";
         document.getElementById("correctSound").play();
     } else {
-        feedback.textContent = "🙁 إجابة خاطئة، حاول مرة أخرى";
+        feedback.textContent = "🙁 حاول مرة أخرى";
         document.getElementById("wrongSound").play();
     }
-
     setTimeout(nextQuestion, 1200);
 }
 
@@ -89,18 +106,11 @@ function nextQuestion() {
 function showResult() {
     document.getElementById("quiz").classList.add("hidden");
     document.getElementById("resultPage").classList.remove("hidden");
-
-    document.getElementById("finalText").textContent = "🎉 انتهى الاختبار";
     document.getElementById("scoreText").textContent = `${score}/5`;
-
-    if (score === 5) {
-        document.getElementById("winSound").play();
-    }
+    if (score === 5) document.getElementById("winSound").play();
 }
 
-function goHome() {
-    location.reload();
-}
+function goHome() { location.reload(); }
 
 function showTeacher() {
     document.getElementById("home").classList.add("hidden");
@@ -110,8 +120,7 @@ function showTeacher() {
 function suggest() {
     const time = document.getElementById("lessonTime").value;
     const res = document.getElementById("teacherResult");
-
-    if (time == 10) res.textContent = "💡 سؤال سريع + نقاش جماعي";
-    if (time == 20) res.textContent = "🎯 مسابقة قصيرة عبر EduBreak";
-    if (time == 30) res.textContent = "🚀 نشاط تعاوني + لعبة تعليمية";
+    if (time == 10) res.textContent = "💡 سؤال سريع + نقاش";
+    if (time == 20) res.textContent = "🎯 مسابقة قصيرة";
+    if (time == 30) res.textContent = "🚀 نشاط تعاوني + لعبة";
 }
