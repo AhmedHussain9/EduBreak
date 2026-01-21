@@ -44,10 +44,9 @@
     <!-- صفحة الاختبار -->
     <section id="quiz" class="hidden quiz-page">
         <div class="quiz-header">
-            <span>⏱ <span id="time">15</span></span>
+            <span>⏱ <span id="time">15</span> ثانية</span>
             <button onclick="goHome()">⬅ الأقسام</button>
         </div>
-
         <h2 id="question"></h2>
         <div id="options" class="options"></div>
         <div id="feedback" class="feedback"></div>
@@ -64,16 +63,13 @@
     <section id="teacher" class="hidden teacher-page">
         <h2>👩‍🏫 مساعد المعلمة الذكي</h2>
         <p>اختاري زمن الحصة وسنقترح نشاطًا مناسبًا</p>
-
         <select id="lessonTime">
             <option value="10">10 دقائق</option>
             <option value="20">20 دقيقة</option>
             <option value="30">30 دقيقة</option>
         </select>
-
         <button onclick="suggest()">اقترح نشاط</button>
         <p id="teacherResult"></p>
-
         <button onclick="goHome()">⬅ رجوع</button>
     </section>
 
