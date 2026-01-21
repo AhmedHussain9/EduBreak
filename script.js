@@ -1,3 +1,4 @@
+// الأسئلة لكل قسم
 const questions = {
     religious: [
         { q: "ما هو الركن الثاني في الإسلام؟", options: ["الصلاة", "الزكاة", "الصوم", "الحج"], answer: 0 },
@@ -48,10 +49,9 @@ function startQuiz(section) {
 
 function loadQuestion() {
     clearInterval(timer);
-    document.getElementById('feedback').innerHTML = '';
+    document.getElementById('feedback').innerText = '';
     if (currentIndex >= currentQuiz.length) {
-        showResult();
-        return;
+        showResult(); return;
     }
     document.getElementById('question').innerText = currentQuiz[currentIndex].q;
     const optionsDiv = document.getElementById('options');
@@ -79,7 +79,6 @@ function checkAnswer(choice) {
         score++;
         feedbackDiv.innerHTML = '✅ أحسنت!';
         document.getElementById('correctSound').play();
-        confetti();
     } else {
         feedbackDiv.innerHTML = '❌ حاول مرة أخرى!';
         document.getElementById('wrongSound').play();
@@ -91,7 +90,6 @@ function checkAnswer(choice) {
 function showResult() {
     document.getElementById('quiz').classList.add('hidden');
     document.getElementById('resultPage').classList.remove('hidden');
-    document.getElementById('finalText').innerText = '🏆 النتيجة النهائية';
     document.getElementById('scoreText').innerText = `${score}/5`;
     if (score === 5) document.getElementById('winSound').play();
 }
@@ -113,17 +111,7 @@ function suggest() {
     document.getElementById('result').innerText = `⏱ نشاط مقترح لمدة ${time} دقيقة`;
 }
 
-/* Confetti */
-function confetti() {
-    confettiEffect = {
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-    };
-    confetti(confettiEffect);
-}
-
-/* Canvas نجوم متلألئة */
+/* Canvas stars */
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 let stars = [];
