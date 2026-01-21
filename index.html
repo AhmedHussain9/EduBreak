@@ -1,65 +1,186 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>EduBreak</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>اختبار تفاعلي</title>
+
+<style>
+body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: rgba(0,0,0,0.35);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+#timer {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #ffd700;
+}
+
+.question {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.options button {
+    width: 100%;
+    margin: 8px 0;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    background: #ffffff;
+    color: #333;
+}
+
+.options button:hover {
+    background: #ffd700;
+}
+
+.feedback {
+    margin-top: 20px;
+    font-size: 22px;
+    min-height: 40px;
+}
+
+.feedback img {
+    width: 80px;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+</style>
 </head>
+
 <body>
 
-<h1>🏆 EduBreak</h1>
-<p class="subtitle">منصة تفاعلية للحصص الاحتياط</p>
-
-<div class="quote">"التعلم متعة… عندما نحوله إلى لعبة 🎮"</div>
-
-<!-- الصفحة الرئيسية -->
-<div id="home" class="grid">
-  <div class="card" onclick="startQuiz('religious')"><img src="mosque.svg"><span>ديني</span></div>
-  <div class="card" onclick="startQuiz('culture')"><img src="book.svg"><span>ثقافي</span></div>
-  <div class="card" onclick="startQuiz('education')"><img src="brain.svg"><span>تعليمي</span></div>
-  <div class="card" onclick="startQuiz('fun')"><img src="game.svg"><span>ترفيهي</span></div>
-  <div class="card" onclick="startQuiz('skills')"><img src="handshake.svg"><span>مهاري</span></div>
-  <div class="card teacher" onclick="showTeacher()"><img src="teacher.svg"><span>للمعلمة</span></div>
+<div class="container">
+    <h1>🎯 اختبار ذكي</h1>
+    <div id="timer">⏳ 10</div>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
 </div>
 
-<!-- صفحة الأسئلة -->
-<div id="quiz" class="hidden">
-  <div id="progressBarContainer"><div id="progressBar"></div></div>
-  <div class="top-bar">⏱ <span id="time">15</span> ثانية</div>
-  <h2 id="question"></h2>
-  <div id="options"></div>
-</div>
+<!-- أصوات -->
+<audio id="successSound">
+    <source src="https://www.soundjay.com/buttons/sounds/button-3.mp3">
+</audio>
 
-<!-- Feedback -->
-<div id="feedback" class="hidden"></div>
+<script>
+const questions = [
+    {
+        q: "ما عاصمة المملكة العربية السعودية؟",
+        options: ["جدة", "مكة", "الرياض", "الدمام"],
+        answer: 2
+    },
+    {
+        q: "كم عدد كواكب المجموعة الشمسية؟",
+        options: ["7", "8", "9", "10"],
+        answer: 1
+    }
+];
 
-<!-- صفحة النتيجة -->
-<div id="resultPage" class="hidden">
-  <h2 id="finalText"></h2>
-  <p id="scoreText"></p>
-  <button onclick="location.reload()">🔁 إعادة</button>
-</div>
+let currentQuestion = 0;
+let timer;
+let timeLeft = 10;
 
-<!-- قسم المعلمة -->
-<div id="teacher" class="hidden">
-  <h2>👩‍🏫 اقتراح ذكي للمعلمة</h2>
-  <select id="lessonTime">
-    <option value="10">10 دقائق</option>
-    <option value="20">20 دقيقة</option>
-    <option value="30">30 دقيقة</option>
-  </select>
-  <button onclick="suggest()">اقترح نشاط</button>
-  <p id="result"></p>
-  <button onclick="location.reload()">⬅ رجوع</button>
-</div>
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const timerEl = document.getElementById("timer");
+const feedbackEl = document.getElementById("feedback");
+const successSound = document.getElementById("successSound");
 
-<audio id="winSound" src="win.mp3"></audio>
-<audio id="correctSound" src="correct.mp3"></audio>
-<audio id="wrongSound" src="wrong.mp3"></audio>
+function startTimer() {
+    clearInterval(timer);
+    timeLeft = 10;
+    timerEl.textContent = "⏳ " + timeLeft;
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script src="script.js"></script>
+    timer = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = "⏳ " + timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            showWrong("⏰ انتهى الوقت!");
+        }
+    }, 1000);
+}
+
+function loadQuestion() {
+    feedbackEl.innerHTML = "";
+    optionsEl.innerHTML = "";
+
+    const q = questions[currentQuestion];
+    questionEl.textContent = q.q;
+
+    q.options.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = option;
+        btn.onclick = () => checkAnswer(index);
+        optionsEl.appendChild(btn);
+    });
+
+    startTimer();
+}
+
+function checkAnswer(index) {
+    clearInterval(timer);
+
+    if (index === questions[currentQuestion].answer) {
+        showCorrect();
+    } else {
+        showWrong("❌ إجابة خاطئة");
+    }
+}
+
+function showCorrect() {
+    successSound.play();
+    feedbackEl.innerHTML = "😀 أحسنت! إجابة صحيحة<br>🌟 استمر";
+    nextQuestion();
+}
+
+function showWrong(text) {
+    feedbackEl.innerHTML = text + "<br><img src='https://i.imgur.com/6NKPrhO.png'>";
+    nextQuestion();
+}
+
+function nextQuestion() {
+    setTimeout(() => {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            loadQuestion();
+        } else {
+            questionEl.textContent = "🎉 انتهى الاختبار";
+            optionsEl.innerHTML = "";
+            timerEl.textContent = "";
+            feedbackEl.innerHTML = "👏 عمل رائع";
+        }
+    }, 2000);
+}
+
+loadQuestion();
+</script>
+
 </body>
 </html>
