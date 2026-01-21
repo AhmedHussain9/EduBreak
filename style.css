@@ -34,7 +34,7 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    padding: 0 20px 50px 20px;
+    padding: 0 20px 30px 20px;
 }
 
 .card {
@@ -72,6 +72,27 @@ h1 {
 .card.teacher {
     background: #fbbf24;
     color: #fff;
+}
+
+/* صور الفصول */
+.classImages {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.classImages img {
+    width: 150px;
+    height: 100px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.classImages img:hover {
+    transform: scale(1.05);
 }
 
 /* صفحة الأسئلة */
@@ -142,20 +163,34 @@ button:hover {
     background-color: #4338ca;
 }
 
+/* قسم المعلمة */
+#teacher {
+    text-align: center;
+    padding: 30px;
+}
+
+.teacherContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
 #teacher select {
     padding: 10px;
     font-size: 1em;
     border-radius: 10px;
     border: 1px solid #d1d5db;
-    margin-bottom: 10px;
 }
 
 #teacher p {
     margin-top: 15px;
-    font-size: 1.1em;
+    font-size: 1.2em;
     color: #374151;
 }
 
+/* شريط التقدم */
 #progressBarContainer {
     width: 80%;
     background-color: #e5e7eb;
