@@ -1,47 +1,19 @@
 let current = 0;
-let quizData = [];
 let correctCount = 0;
 let allCorrect = true;
 let timeLeft = 15;
 let timer;
+let quizData = [];
 
-const winSound = document.getElementById("winSound");
+const encouragements = ["أحسنت 👏","ممتاز 🌟","رائع 😀","استمر 💪"];
 
 const quizzes = {
   religious: [
-    {q:"ما السورة التي لا تبدأ بالبسملة؟", o:["التوبة","الكهف","يس"], a:0},
-    {q:"كم عدد القراءات المتواترة؟", o:["7","10","14"], a:1},
-    {q:"أطول آية في القرآن؟", o:["آية الدين","الكرسي","النور"], a:0},
-    {q:"أول من جمع القرآن؟", o:["أبو بكر","عمر","عثمان"], a:0},
+    {q:"ما السورة التي لا تبدأ بالبسملة؟", o:["التوبة","يس","الكهف"], a:0},
+    {q:"كم عدد القراءات المتواترة؟", o:["7","10","5"], a:1},
+    {q:"أطول آية في القرآن؟", o:["الدين","الكرسي","النور"], a:0},
+    {q:"أول من جمع القرآن؟", o:["أبو بكر","عثمان","عمر"], a:0},
     {q:"عدد أسماء الله الحسنى؟", o:["99","100","88"], a:0}
-  ],
-  culture: [
-    {q:"متى توحيد المملكة؟", o:["1932","1927","1940"], a:0},
-    {q:"عاصمة كندا؟", o:["تورنتو","أوتاوا","فانكوفر"], a:1},
-    {q:"مؤسس علم الاجتماع؟", o:["ابن خلدون","أرسطو","أفلاطون"], a:0},
-    {q:"أكبر قارة؟", o:["آسيا","أفريقيا","أوروبا"], a:0},
-    {q:"أطول نهر؟", o:["النيل","الأمازون","الدانوب"], a:0}
-  ],
-  education: [
-    {q:"√144 = ؟", o:["12","14","10"], a:0},
-    {q:"π ≈ ؟", o:["3.14","2.17","4.1"], a:0},
-    {q:"عدد الكواكب؟", o:["8","9","7"], a:0},
-    {q:"عدد أولي؟", o:["11","21","27"], a:0},
-    {q:"سرعة الضوء؟", o:["300 ألف كم/ث","150 ألف","1 مليون"], a:0}
-  ],
-  fun: [
-    {q:"أسرع حيوان؟", o:["الفهد","الحصان","الذئب"], a:0},
-    {q:"كم ثانية في الساعة؟", o:["3600","600","1000"], a:0},
-    {q:"أكبر محيط؟", o:["الهادئ","الأطلسي","الهندي"], a:0},
-    {q:"كم يوم بالسنة؟", o:["365","360","366"], a:0},
-    {q:"أكثر لون انتشار؟", o:["الأزرق","الأحمر","الأخضر"], a:0}
-  ],
-  skills: [
-    {q:"حل المشكلات يبدأ بـ؟", o:["الفهم","الحل","التنفيذ"], a:0},
-    {q:"التواصل الفعال؟", o:["الاستماع","الحديث","الصمت"], a:0},
-    {q:"القيادة تعتمد على؟", o:["التأثير","الصوت","الأوامر"], a:0},
-    {q:"العمل الجماعي؟", o:["تعاون","فردية","تنافس"], a:0},
-    {q:"إدارة الوقت؟", o:["تنظيم","تأجيل","إهمال"], a:0}
   ]
 };
 
@@ -52,6 +24,7 @@ function startQuiz(type){
   allCorrect = true;
   document.getElementById("home").classList.add("hidden");
   document.getElementById("quiz").classList.remove("hidden");
+  document.getElementById("progressBar").style.width="0%";
   nextQuestion();
 }
 
@@ -61,54 +34,77 @@ function nextQuestion(){
     return;
   }
 
+  clearInterval(timer);
   timeLeft = 15;
   document.getElementById("time").innerText = timeLeft;
-  clearInterval(timer);
+
   timer = setInterval(()=>{
     timeLeft--;
     document.getElementById("time").innerText = timeLeft;
     if(timeLeft <= 0){
+      clearInterval(timer);
       allCorrect = false;
-      current++;
-      nextQuestion();
+      showFeedback(false);
     }
   },1000);
 
   const q = quizData[current];
   document.getElementById("question").innerText = q.q;
-  const optionsDiv = document.getElementById("options");
-  optionsDiv.innerHTML = "";
+  const options = document.getElementById("options");
+  options.innerHTML = "";
 
   q.o.forEach((opt,i)=>{
     const btn = document.createElement("div");
     btn.className = "option";
     btn.innerText = opt;
-    btn.onclick = ()=>{
-      if(i === q.a) correctCount++;
-      else allCorrect = false;
-      current++;
-      document.getElementById("progressBar").style.width = `${((current)/quizData.length)*100}%`;
-      nextQuestion();
-    };
-    optionsDiv.appendChild(btn);
+    btn.onclick = ()=>checkAnswer(i === q.a);
+    options.appendChild(btn);
   });
 }
 
-function showResult(){
+function checkAnswer(correct){
   clearInterval(timer);
+  if(correct){
+    correctCount++;
+    document.getElementById("correctSound").play();
+    showFeedback(true);
+  } else {
+    allCorrect = false;
+    document.getElementById("wrongSound").play();
+    showFeedback(false);
+  }
+}
+
+function showFeedback(correct){
+  const fb = document.getElementById("feedback");
+  fb.className = correct ? "correct" : "wrong";
+  fb.innerHTML = correct
+    ? "😀 " + encouragements[Math.floor(Math.random()*encouragements.length)]
+    : "🙁 حاول مرة أخرى";
+
+  fb.classList.remove("hidden");
+
+  setTimeout(()=>{
+    fb.classList.add("hidden");
+    current++;
+    document.getElementById("progressBar").style.width =
+      (current/quizData.length*100)+"%";
+    nextQuestion();
+  },1200);
+}
+
+function showResult(){
   document.getElementById("quiz").classList.add("hidden");
   document.getElementById("resultPage").classList.remove("hidden");
-  const text = document.getElementById("finalText");
-  const scoreText = document.getElementById("scoreText");
-
-  scoreText.innerText = `✅ ${correctCount}/${quizData.length}`;
+  document.getElementById("scoreText").innerText =
+    `النتيجة: ${correctCount}/${quizData.length}`;
 
   if(allCorrect){
-    text.innerText = "🎉 ممتاز! جميع الإجابات صحيحة";
-    winSound.play();
-    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+    document.getElementById("finalText").innerText = "🎉 فوز كامل!";
+    document.getElementById("winSound").play();
+    confetti({particleCount:200,spread:80,origin:{y:0.6}});
   } else {
-    text.innerText = "📘 تم الحل، راجع الإجابات وجرّب مرة أخرى";
+    document.getElementById("finalText").innerText = "📘 حاول مرة أخرى";
   }
 }
 
@@ -120,7 +116,7 @@ function showTeacher(){
 function suggest(){
   const t = document.getElementById("lessonTime").value;
   const r = document.getElementById("result");
-  if(t==10) r.innerText="⚡ اختبار سريع أو سؤال تفكير.";
-  if(t==20) r.innerText="🎯 مسابقة تعليمية مع نقاش.";
-  if(t==30) r.innerText="🧩 نشاط مهاري + تحليل.";
+  if(t==10) r.innerText="⚡ مسابقة سريعة";
+  if(t==20) r.innerText="🎯 نشاط جماعي";
+  if(t==30) r.innerText="🧩 نشاط مهاري + نقاش";
 }
