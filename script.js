@@ -1,3 +1,15 @@
+// نجوم متحركة
+for (let i = 0; i < 50; i++) {
+    const star = document.createElement("div");
+    star.classList.add("star");
+    star.style.top = Math.random() * 100 + "%";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.width = star.style.height = Math.random() * 3 + 2 + "px";
+    star.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.getElementById("stars").appendChild(star);
+}
+
+// Quiz Code (كما سبق)
 let currentQuiz = [];
 let currentIndex = 0;
 let score = 0;
@@ -85,7 +97,7 @@ function selectAnswer(i) {
     const feedback = document.getElementById("feedback");
     if (i === currentQuiz[currentIndex].a) {
         score++;
-        feedback.textContent = "😀 أحسنت";
+        feedback.textContent = "😀 أحسنت!";
         document.getElementById("correctSound").play();
     } else {
         feedback.textContent = "🙁 حاول مرة أخرى";
