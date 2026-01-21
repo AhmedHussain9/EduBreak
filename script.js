@@ -1,148 +1,147 @@
 const quizzes = {
   religious: [
-    { q: "كم عدد أركان الإسلام؟", options: ["3", "4", "5", "6"], answer: 2 },
-    { q: "ما أول سورة في القرآن؟", options: ["البقرة", "الفاتحة", "العلق", "الناس"], answer: 1 },
-    { q: "كم عدد الصلوات المفروضة؟", options: ["3", "4", "5", "6"], answer: 2 },
-    { q: "في أي شهر نصوم؟", options: ["شعبان", "رجب", "رمضان", "ذو الحجة"], answer: 2 },
-    { q: "ما قبلة المسلمين؟", options: ["المدينة", "الأقصى", "مكة", "الطائف"], answer: 2 }
+    { q: "كم عدد أركان الإسلام؟", o: ["4", "5", "6", "7"], a: 1 },
+    { q: "ما أول سورة في القرآن؟", o: ["البقرة", "الفاتحة", "العلق", "الناس"], a: 1 },
+    { q: "كم عدد الصلوات المفروضة؟", o: ["3", "4", "5", "6"], a: 2 },
+    { q: "في أي شهر نصوم؟", o: ["رجب", "شعبان", "رمضان", "ذو الحجة"], a: 2 },
+    { q: "ما قبلة المسلمين؟", o: ["المدينة", "الأقصى", "مكة", "الطائف"], a: 2 }
   ],
-
   culture: [
-    { q: "من مؤسس المملكة العربية السعودية؟", options: ["الملك فيصل", "الملك عبدالعزيز", "الملك سعود", "الملك خالد"], answer: 1 },
-    { q: "عاصمة السعودية؟", options: ["جدة", "مكة", "الرياض", "الدمام"], answer: 2 },
-    { q: "لغة المملكة الرسمية؟", options: ["إنجليزية", "فرنسية", "عربية", "تركية"], answer: 2 },
-    { q: "اليوم الوطني في شهر؟", options: ["أغسطس", "سبتمبر", "أكتوبر", "نوفمبر"], answer: 1 },
-    { q: "رؤية السعودية؟", options: ["2030", "2025", "2040", "2050"], answer: 0 }
+    { q: "مؤسس المملكة العربية السعودية؟", o: ["فيصل", "عبدالعزيز", "سعود", "خالد"], a: 1 },
+    { q: "عاصمة السعودية؟", o: ["جدة", "الرياض", "مكة", "الدمام"], a: 1 },
+    { q: "اليوم الوطني في شهر؟", o: ["أغسطس", "سبتمبر", "أكتوبر", "نوفمبر"], a: 1 },
+    { q: "رؤية السعودية؟", o: ["2025", "2030", "2040", "2050"], a: 1 },
+    { q: "لغة المملكة الرسمية؟", o: ["إنجليزية", "فرنسية", "عربية", "تركية"], a: 2 }
   ],
-
   education: [
-    { q: "5 × 6 = ؟", options: ["11", "30", "35", "25"], answer: 1 },
-    { q: "10 ÷ 2 = ؟", options: ["3", "4", "5", "6"], answer: 2 },
-    { q: "7 + 8 = ؟", options: ["14", "15", "16", "17"], answer: 1 },
-    { q: "9 − 4 = ؟", options: ["3", "4", "5", "6"], answer: 2 },
-    { q: "2 × 8 = ؟", options: ["14", "15", "16", "18"], answer: 2 }
+    { q: "6 × 7 = ؟", o: ["36", "42", "48", "56"], a: 1 },
+    { q: "9 + 8 = ؟", o: ["15", "16", "17", "18"], a: 2 },
+    { q: "20 ÷ 4 = ؟", o: ["4", "5", "6", "7"], a: 1 },
+    { q: "15 − 6 = ؟", o: ["7", "8", "9", "10"], a: 2 },
+    { q: "8 × 5 = ؟", o: ["35", "40", "45", "50"], a: 1 }
   ],
-
   fun: [
-    { q: "أي حيوان ينام واقفًا؟", options: ["حصان", "قط", "أسد", "كلب"], answer: 0 },
-    { q: "ما أسرع حيوان؟", options: ["فهد", "أسد", "حصان", "ذئب"], answer: 0 },
-    { q: "كم أرجل العنكبوت؟", options: ["6", "8", "10", "12"], answer: 1 },
-    { q: "أكبر كوكب؟", options: ["الأرض", "المريخ", "المشتري", "زحل"], answer: 2 },
-    { q: "لون السماء؟", options: ["أخضر", "أحمر", "أزرق", "أصفر"], answer: 2 }
+    { q: "أسرع حيوان؟", o: ["أسد", "فهد", "حصان", "ذئب"], a: 1 },
+    { q: "كم أرجل العنكبوت؟", o: ["6", "8", "10", "12"], a: 1 },
+    { q: "أكبر كوكب؟", o: ["الأرض", "زحل", "المشتري", "المريخ"], a: 2 },
+    { q: "لون السماء؟", o: ["أخضر", "أزرق", "أحمر", "أسود"], a: 1 },
+    { q: "أصغر كوكب؟", o: ["الأرض", "عطارد", "المريخ", "زحل"], a: 1 }
   ],
-
   skills: [
-    { q: "أيها مهارة حياتية؟", options: ["التواصل", "النسخ", "الحفظ", "التلقين"], answer: 0 },
-    { q: "العمل ضمن فريق يعني؟", options: ["التعاون", "التنافس", "الكسل", "العشوائية"], answer: 0 },
-    { q: "حل المشكلات يحتاج؟", options: ["تفكير", "سرعة", "حفظ", "تلقين"], answer: 0 },
-    { q: "احترام الوقت يعني؟", options: ["الالتزام", "التأخير", "النسيان", "التجاهل"], answer: 0 },
-    { q: "الاستماع الجيد مهارة؟", options: ["اجتماعية", "رياضية", "لغوية", "رقمية"], answer: 0 }
+    { q: "مهارة التواصل تعني؟", o: ["الاستماع", "الكسل", "التأخير", "التجاهل"], a: 0 },
+    { q: "العمل الجماعي هو؟", o: ["تنافس", "تعاون", "فوضى", "كسل"], a: 1 },
+    { q: "إدارة الوقت تعني؟", o: ["تنظيم", "تأجيل", "تجاهل", "نسيان"], a: 0 },
+    { q: "حل المشكلات يحتاج؟", o: ["حفظ", "تفكير", "نسخ", "عشوائية"], a: 1 },
+    { q: "الاستماع الجيد مهارة؟", o: ["رياضية", "اجتماعية", "رقمية", "يدوية"], a: 1 }
   ]
 };
 
-let currentQuiz = [];
-let index = 0;
+let quiz = [];
+let i = 0;
 let score = 0;
 let timer;
-let timeLeft = 15;
+let time = 15;
 
 const home = document.getElementById("home");
-const quiz = document.getElementById("quiz");
-const questionEl = document.getElementById("question");
-const optionsEl = document.getElementById("options");
+const quizBox = document.getElementById("quiz");
+const question = document.getElementById("question");
+const options = document.getElementById("options");
 const timeEl = document.getElementById("time");
 const feedback = document.getElementById("feedback");
 const resultPage = document.getElementById("resultPage");
 const scoreText = document.getElementById("scoreText");
-const finalText = document.getElementById("finalText");
 const progressBar = document.getElementById("progressBar");
 
-const correctSound = document.getElementById("correctSound");
-const wrongSound = document.getElementById("wrongSound");
-const winSound = document.getElementById("winSound");
-
 function startQuiz(type) {
-  currentQuiz = quizzes[type];
-  index = 0;
+  quiz = quizzes[type];
+  i = 0;
   score = 0;
   home.classList.add("hidden");
-  quiz.classList.remove("hidden");
-  loadQuestion();
+  quizBox.classList.remove("hidden");
+  load();
 }
 
-function loadQuestion() {
+function load() {
   clearInterval(timer);
   feedback.classList.add("hidden");
-  optionsEl.innerHTML = "";
+  options.innerHTML = "";
 
-  const q = currentQuiz[index];
-  questionEl.textContent = q.q;
+  const q = quiz[i];
+  question.textContent = q.q;
 
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement("button");
-    btn.textContent = opt;
-    btn.className = "option-btn";
-    btn.onclick = () => checkAnswer(i);
-    optionsEl.appendChild(btn);
+  q.o.forEach((opt, idx) => {
+    const b = document.createElement("button");
+    b.textContent = opt;
+    b.className = "option-btn";
+    b.onclick = () => answer(idx);
+    options.appendChild(b);
   });
 
   startTimer();
-  updateProgress();
+  progressBar.style.width = `${(i / quiz.length) * 100}%`;
 }
 
 function startTimer() {
-  timeLeft = 15;
-  timeEl.textContent = timeLeft;
-
+  time = 15;
+  timeEl.textContent = time;
   timer = setInterval(() => {
-    timeLeft--;
-    timeEl.textContent = timeLeft;
-    if (timeLeft === 0) {
+    time--;
+    timeEl.textContent = time;
+    if (time === 0) {
       clearInterval(timer);
-      showWrong("⏰ انتهى الوقت");
+      wrong("⏰ انتهى الوقت");
     }
   }, 1000);
 }
 
-function checkAnswer(i) {
+function answer(idx) {
   clearInterval(timer);
-  if (i === currentQuiz[index].answer) {
-    score++;
-    showCorrect();
-  } else {
-    showWrong("❌ إجابة خاطئة");
-  }
+  idx === quiz[i].a ? correct() : wrong("❌ إجابة خاطئة");
 }
 
-function showCorrect() {
-  correctSound.play();
-  feedback.innerHTML = "😀 أحسنت! إجابة صحيحة";
+function correct() {
+  score++;
+  document.getElementById("correctSound").play();
+  feedback.innerHTML = "😀 أحسنت!";
   feedback.classList.remove("hidden");
   next();
 }
 
-function showWrong(text) {
-  wrongSound.play();
-  feedback.innerHTML = `${text}<br>🙁 حاول مرة أخرى`;
+function wrong(msg) {
+  document.getElementById("wrongSound").play();
+  feedback.innerHTML = msg + "<br>🙁 حاول مرة أخرى";
   feedback.classList.remove("hidden");
   next();
 }
 
 function next() {
   setTimeout(() => {
-    index++;
-    index < currentQuiz.length ? loadQuestion() : showResult();
+    i++;
+    if (i < quiz.length) {
+      load();
+    } else {
+      feedback.classList.add("hidden");
+      setTimeout(showResult, 400);
+    }
   }, 1500);
 }
 
 function showResult() {
-  quiz.classList.add("hidden");
+  quizBox.classList.add("hidden");
   resultPage.classList.remove("hidden");
-  winSound.play();
-  finalText.textContent = "🎉 انتهى التحدي";
-  scoreText.textContent = `نتيجتك: ${score} / ${currentQuiz.length}`;
+  document.getElementById("winSound").play();
+  scoreText.textContent = `نتيجتك: ${score} / ${quiz.length}`;
 }
 
-function updateProgress() {
-  progressBar.style.width = `${(index / currentQuiz.length) * 100}%`;
+function showTeacher() {
+  home.classList.add("hidden");
+  document.getElementById("teacher").classList.remove("hidden");
+}
+
+function suggest() {
+  const t = document.getElementById("lessonTime").value;
+  document.getElementById("result").textContent =
+    t == 10 ? "نشاط ثقافي سريع" :
+    t == 20 ? "مسابقة تعليمية" :
+    "نشاط مهاري جماعي";
 }
