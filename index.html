@@ -16,31 +16,25 @@
         <p>حوّل الحصة الاحتياط إلى تجربة ممتعة</p>
     </header>
 
-    <!-- الأقسام -->
+    <!-- الصفحة الرئيسية -->
     <section id="home" class="sections">
         <div class="section-card" onclick="startQuiz('religious')">
-            <img src="mosque.svg">
-            <span>ديني</span>
+            <img src="mosque.svg"><span>ديني</span>
         </div>
         <div class="section-card" onclick="startQuiz('culture')">
-            <img src="book.svg">
-            <span>ثقافي</span>
+            <img src="book.svg"><span>ثقافي</span>
         </div>
         <div class="section-card" onclick="startQuiz('education')">
-            <img src="brain.svg">
-            <span>تعليمي</span>
+            <img src="brain.svg"><span>تعليمي</span>
         </div>
         <div class="section-card" onclick="startQuiz('fun')">
-            <img src="game.svg">
-            <span>ترفيهي</span>
+            <img src="game.svg"><span>ترفيهي</span>
         </div>
         <div class="section-card" onclick="startQuiz('skills')">
-            <img src="handshake.svg">
-            <span>مهاري</span>
+            <img src="handshake.svg"><span>مهاري</span>
         </div>
         <div class="section-card teacher" onclick="showTeacher()">
-            <img src="teacher.svg">
-            <span>للمعلمة</span>
+            <img src="teacher.svg"><span>للمعلمة</span>
         </div>
     </section>
 
@@ -53,13 +47,12 @@
 
         <h2 id="question"></h2>
         <div id="options" class="options"></div>
-
         <div id="feedback" class="feedback"></div>
     </section>
 
-    <!-- النتيجة -->
+    <!-- صفحة النتيجة -->
     <section id="resultPage" class="hidden result">
-        <h2 id="finalText"></h2>
+        <h2>🎉 انتهى الاختبار</h2>
         <p id="scoreText"></p>
         <button onclick="goHome()">🔁 العودة للأقسام</button>
     </section>
