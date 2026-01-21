@@ -1,47 +1,52 @@
-// الأسئلة لكل قسم
+// أسئلة لكل قسم
 const questions = {
     religious: [
-        { q: "ما هو الركن الثاني في الإسلام؟", options: ["الصلاة", "الزكاة", "الصوم", "الحج"], answer: 0 },
+        { q: "من هو أول خليفة في الإسلام؟", options: ["أبو بكر", "عمر", "عثمان", "علي"], answer: 0 },
         { q: "كم عدد ركعات صلاة الفجر؟", options: ["2", "3", "4", "1"], answer: 0 },
-        { q: "أول سورة في القرآن؟", options: ["البقرة", "الفاتحة", "الإخلاص", "الناس"], answer: 1 },
-        { q: "من هو آخر الأنبياء؟", options: ["موسى", "محمد", "عيسى", "نوح"], answer: 1 },
-        { q: "ما هي القبلة؟", options: ["البيت الحرام", "المسجد النبوي", "القدس", "الكعبة"], answer: 3 },
+        { q: "ما هي أطول سورة في القرآن؟", options: ["البقرة", "النساء", "آل عمران", "التوبة"], answer: 0 },
+        { q: "أين ولد النبي محمد ﷺ؟", options: ["المدينة", "مكة", "القدس", "بغداد"], answer: 1 },
+        { q: "ما هي أول آية نزلت في القرآن؟", options: ["اقرأ", "الحمد لله", "يس", "التوحيد"], answer: 0 }
     ],
     culture: [
-        { q: "ما عاصمة المملكة العربية السعودية؟", options: ["جدة", "الرياض", "مكة", "المدينة"], answer: 1 },
-        { q: "أين تقع الأهرامات؟", options: ["مصر", "المغرب", "تركيا", "العراق"], answer: 0 },
-        { q: "أكبر قارة في العالم؟", options: ["أفريقيا", "آسيا", "أوروبا", "أمريكا"], answer: 1 },
-        { q: "أول رئيس للولايات المتحدة؟", options: ["أبراهام لينكولن", "توماس جيفرسون", "جورج واشنطن", "جون كينيدي"], answer: 2 },
-        { q: "ما هي لغة البرازيل الرسمية؟", options: ["الإسبانية", "البرتغالية", "الإنجليزية", "الفرنسية"], answer: 1 },
+        { q: "ما عاصمة فرنسا؟", options: ["باريس", "لندن", "مدريد", "روما"], answer: 0 },
+        { q: "ما أكبر محيط في العالم؟", options: ["الأطلسي", "الهندي", "الهادئ", "المتجمد الشمالي"], answer: 2 },
+        { q: "كم عدد القارات؟", options: ["5", "6", "7", "8"], answer: 2 },
+        { q: "من كتب رواية 1984؟", options: ["جورج أورويل", "توماس هاردي", "ستيفن كينغ", "ليو تولستوي"], answer: 0 },
+        { q: "ما هي لغة البرازيل الرسمية؟", options: ["الإسبانية", "البرتغالية", "الإنجليزية", "الفرنسية"], answer: 1 }
     ],
     education: [
-        { q: "ما حاصل 5+7؟", options: ["11", "12", "13", "14"], answer: 1 },
-        { q: "ما عدد الحروف في كلمة 'تعليم'؟", options: ["5", "6", "7", "4"], answer: 1 },
-        { q: "كم جانب للمربع؟", options: ["2", "3", "4", "5"], answer: 2 },
-        { q: "ما عكس كلمة 'صغير'؟", options: ["كبير", "ضخم", "طويل", "قصير"], answer: 0 },
-        { q: "ما العدد الأولي بعد 7؟", options: ["8", "9", "10", "11"], answer: 3 },
+        { q: "ما ناتج 7×8؟", options: ["54", "56", "64", "49"], answer: 1 },
+        { q: "ما صيغة الماء الكيميائية؟", options: ["H2O", "CO2", "O2", "NaCl"], answer: 0 },
+        { q: "كم عدد الحروف في الأبجدية العربية؟", options: ["28", "26", "30", "32"], answer: 0 },
+        { q: "ما أسرع حيوان بري؟", options: ["الفهد", "الأسد", "الذئب", "الحصان"], answer: 0 },
+        { q: "ما وحدة قياس شدة التيار الكهربائي؟", options: ["أوم", "أمبير", "فولت", "واط"], answer: 1 }
     ],
     fun: [
-        { q: "ما الحيوان الأسرع؟", options: ["السلحفاة", "الفهد", "الحصان", "الأسد"], answer: 1 },
+        { q: "ما لون السماء أثناء النهار؟", options: ["أزرق", "أخضر", "أحمر", "أصفر"], answer: 0 },
+        { q: "ما الحيوان الذي يسمى ملك الغابة؟", options: ["الأسد", "النمر", "الفيل", "الذئب"], answer: 0 },
         { q: "كم عدد أيام الأسبوع؟", options: ["5", "6", "7", "8"], answer: 2 },
-        { q: "أيهم يطير؟", options: ["البطة", "الديك", "النعامة", "الخفاش"], answer: 3 },
-        { q: "ما لون السماء الصافية؟", options: ["أزرق", "أحمر", "أخضر", "أصفر"], answer: 0 },
-        { q: "ما نوع النشاط الرياضي؟", options: ["سباحة", "رقص", "قراءة", "رياضيات"], answer: 0 },
+        { q: "ما اللعبة التي تستخدم لوحة الشطرنج؟", options: ["الدومينو", "الشطرنج", "الكارام", "الورق"], answer: 1 },
+        { q: "كم عدد الكواكب في النظام الشمسي؟", options: ["7", "8", "9", "10"], answer: 1 }
     ],
     skills: [
-        { q: "ما أفضل طريقة لتنظيم الوقت؟", options: ["الفوضى", "الجدولة", "التأجيل", "اللعب"], answer: 1 },
-        { q: "ماذا يساعد الحوار؟", options: ["التفاهم", "الجدال", "الصمت", "النوم"], answer: 0 },
-        { q: "متى يكون العمل الجماعي مفيد؟", options: ["دائما", "أحيانا", "نادر", "أبدا"], answer: 0 },
-        { q: "ماذا ينمي التفكير الناقد؟", options: ["الخيال", "الملاحظة", "التسويف", "الكسل"], answer: 1 },
-        { q: "ما أفضل مهارة للتعلم؟", options: ["الاستماع", "التجاهل", "اللامبالاة", "الجلوس"], answer: 0 },
+        { q: "ما مهارة إدارة الوقت؟", options: ["التأجيل", "التخطيط", "الكسل", "التسويف"], answer: 1 },
+        { q: "ما أفضل طريقة لحل المشكلات؟", options: ["التجاهل", "التفكير المنطقي", "القلق", "العشوائية"], answer: 1 },
+        { q: "ما مهارة التواصل الفعال؟", options: ["الإنصات الجيد", "الصمت الدائم", "المقاطعة", "الانتقاد"], answer: 0 },
+        { q: "ما المهارة المتعلقة بالعمل الجماعي؟", options: ["التعاون", "العزلة", "السيطرة", "التشتت"], answer: 0 },
+        { q: "ما مهارة الإبداع؟", options: ["التكرار", "النسخ", "التفكير الابتكاري", "التقليد"], answer: 2 }
     ]
 };
 
-let currentQuiz = [], currentIndex = 0, score = 0, timeLeft = 15, timer;
+let currentQuiz = [];
+let currentIndex = 0;
+let score = 0;
+let timeLeft = 15;
+let timer;
 
 function startQuiz(section) {
     currentQuiz = questions[section];
-    currentIndex = 0; score = 0;
+    currentIndex = 0;
+    score = 0;
     document.getElementById('home').classList.add('hidden');
     document.getElementById('quiz').classList.remove('hidden');
     loadQuestion();
@@ -49,25 +54,32 @@ function startQuiz(section) {
 
 function loadQuestion() {
     clearInterval(timer);
-    document.getElementById('feedback').innerText = '';
+    document.getElementById('feedback').innerHTML = '';
     if (currentIndex >= currentQuiz.length) {
-        showResult(); return;
+        showResult();
+        return;
     }
-    document.getElementById('question').innerText = currentQuiz[currentIndex].q;
+    const questionObj = currentQuiz[currentIndex];
+    document.getElementById('question').innerText = questionObj.q;
+
     const optionsDiv = document.getElementById('options');
     optionsDiv.innerHTML = '';
-    currentQuiz[currentIndex].options.forEach((opt, i) => {
+    questionObj.options.forEach((opt, i) => {
         const btn = document.createElement('button');
         btn.innerText = opt;
         btn.onclick = () => checkAnswer(i);
         optionsDiv.appendChild(btn);
     });
+
     timeLeft = 15;
     document.getElementById('time').innerText = timeLeft;
     timer = setInterval(() => {
         timeLeft--;
         document.getElementById('time').innerText = timeLeft;
-        if (timeLeft <= 0) { clearInterval(timer); checkAnswer(-1); }
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            checkAnswer(-1); // وقت انتهى
+        }
     }, 1000);
 }
 
@@ -75,14 +87,16 @@ function checkAnswer(choice) {
     clearInterval(timer);
     const correct = currentQuiz[currentIndex].answer;
     const feedbackDiv = document.getElementById('feedback');
+
     if (choice === correct) {
         score++;
-        feedbackDiv.innerHTML = '✅ أحسنت!';
+        feedbackDiv.innerHTML = '✅ أحسنت! 😀';
         document.getElementById('correctSound').play();
     } else {
-        feedbackDiv.innerHTML = '❌ حاول مرة أخرى!';
+        feedbackDiv.innerHTML = '❌ حاول مرة أخرى 🙁';
         document.getElementById('wrongSound').play();
     }
+
     currentIndex++;
     setTimeout(loadQuestion, 1000);
 }
@@ -91,7 +105,9 @@ function showResult() {
     document.getElementById('quiz').classList.add('hidden');
     document.getElementById('resultPage').classList.remove('hidden');
     document.getElementById('scoreText').innerText = `${score}/5`;
-    if (score === 5) document.getElementById('winSound').play();
+    if (score === 5) {
+        document.getElementById('winSound').play();
+    }
 }
 
 function backHome() {
@@ -110,28 +126,3 @@ function suggest() {
     const time = document.getElementById('lessonTime').value;
     document.getElementById('result').innerText = `⏱ نشاط مقترح لمدة ${time} دقيقة`;
 }
-
-/* Canvas stars */
-const canvas = document.getElementById('bgCanvas');
-const ctx = canvas.getContext('2d');
-let stars = [];
-function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-window.onresize = resize;
-resize();
-for (let i = 0; i < 100; i++) {
-    stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 1.5 + 0.5, alpha: Math.random() });
-}
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach(s => {
-        s.alpha += Math.random() * 0.02 - 0.01;
-        if (s.alpha < 0) s.alpha = 0;
-        if (s.alpha > 1) s.alpha = 1;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
-        ctx.fill();
-    });
-    requestAnimationFrame(animate);
-}
-animate();
