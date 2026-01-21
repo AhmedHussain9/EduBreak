@@ -9,12 +9,8 @@ for (let i = 0; i < 50; i++) {
     document.getElementById("stars").appendChild(star);
 }
 
-// Quiz Code (كما سبق)
-let currentQuiz = [];
-let currentIndex = 0;
-let score = 0;
-let timer;
-let timeLeft = 15;
+// Quiz
+let currentQuiz = [], currentIndex = 0, score = 0, timer, timeLeft = 15;
 
 const quizzes = {
     religious: [
@@ -57,69 +53,62 @@ const quizzes = {
 function startQuiz(type) {
     document.getElementById("home").classList.add("hidden");
     document.getElementById("quiz").classList.remove("hidden");
-    currentQuiz = quizzes[type];
-    currentIndex = 0;
-    score = 0;
-    showQuestion();
+    currentQuiz = quizzes[type]; currentIndex = 0; score = 0; showQuestion();
 }
 
 function showQuestion() {
-    clearInterval(timer);
-    timeLeft = 15;
+    clearInterval(timer); timeLeft = 15;
     document.getElementById("time").textContent = timeLeft;
     document.getElementById("feedback").textContent = "";
-
     const q = currentQuiz[currentIndex];
     document.getElementById("question").textContent = q.q;
-
     const optionsDiv = document.getElementById("options");
     optionsDiv.innerHTML = "";
-
     q.o.forEach((opt, i) => {
         const btn = document.createElement("button");
         btn.textContent = opt;
         btn.onclick = () => selectAnswer(i);
         optionsDiv.appendChild(btn);
     });
-
     timer = setInterval(() => {
         timeLeft--;
         document.getElementById("time").textContent = timeLeft;
-        if (timeLeft === 0) {
-            clearInterval(timer);
-            nextQuestion();
-        }
+        if (timeLeft === 0) { clearInterval(timer); nextQuestion(); }
     }, 1000);
 }
 
 function selectAnswer(i) {
     clearInterval(timer);
     const feedback = document.getElementById("feedback");
+    const correctSound = document.getElementById("correctSound");
+    const wrongSound = document.getElementById("wrongSound");
+
     if (i === currentQuiz[currentIndex].a) {
         score++;
         feedback.textContent = "😀 أحسنت!";
-        document.getElementById("correctSound").play();
+        feedback.style.color = "#28a745";
+        correctSound.currentTime = 0;
+        correctSound.play();
     } else {
         feedback.textContent = "🙁 حاول مرة أخرى";
-        document.getElementById("wrongSound").play();
+        feedback.style.color = "#dc3545";
+        wrongSound.currentTime = 0;
+        wrongSound.play();
     }
     setTimeout(nextQuestion, 1200);
 }
 
 function nextQuestion() {
     currentIndex++;
-    if (currentIndex < currentQuiz.length) {
-        showQuestion();
-    } else {
-        showResult();
-    }
+    if (currentIndex < currentQuiz.length) { showQuestion(); }
+    else { showResult(); }
 }
 
 function showResult() {
     document.getElementById("quiz").classList.add("hidden");
     document.getElementById("resultPage").classList.remove("hidden");
     document.getElementById("scoreText").textContent = `${score}/5`;
-    if (score === 5) document.getElementById("winSound").play();
+    if (score === 5) { document.getElementById("winSound").play(); }
 }
 
 function goHome() { location.reload(); }
